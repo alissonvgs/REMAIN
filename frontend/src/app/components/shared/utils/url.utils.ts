@@ -1,4 +1,4 @@
-export const SERVER_URL = "http://ec2-3-137-193-56.us-east-2.compute.amazonaws.com:8080/public/";
+export const SERVER_URL = "http://remain-ufpb.site:8080/public/";
 
 export namespace PaginationUrl {
     export const PAGE = "?page="

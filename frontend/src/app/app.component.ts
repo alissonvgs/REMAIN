@@ -20,7 +20,8 @@ export class AppComponent {
               private router: Router) {
             }
 
-  public ngOnInit(): void {   
+  public ngOnInit(): void {  
+    // this.router.navigate(['home']); 
     this.login();     
 
     this.router.events.subscribe(data => {

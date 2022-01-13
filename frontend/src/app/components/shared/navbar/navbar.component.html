@@ -1,15 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"
-  style="background-color: var(--white); display: flex; justify-content: space-between;">
+  style="background-color: var(--white); display: flex; justify-content: space-between; height: 5rem;">
   <span class="navbar-brand" style="display: flex; flex-direction: row;">
     <img src="https://i.imgur.com/3onBlhj.png" alt="Repositório de Materiais Instrucionais"
       style="width: 7em; height: auto; margin-left: 3rem; cursor: pointer;" routerLink="/home">
-    <div class="col-12 col-md-3" style="margin-left: 4rem;">
+    <!-- <div class="col-12 col-md-3" style="margin-left: 4rem;">
       <input type="email" class="form-control" id="floatingInput" placeholder="Pesquisar" style="width: 14.5rem;"[formControl]="search" (keyup.enter)="onSearch()">
-    </div>
+    </div> -->
 
 
   </span>
-
 
   <span *ngIf="user" class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
     <img class="rounded-circle" ngbDropdownToggle id="navbarDropdown3" [src]="user?.photoUrl"

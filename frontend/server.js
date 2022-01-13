@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const PORT = process.env.PORT || 4200;
+const PORT = process.env.PORT || 80;
 
 app.use(express.static(__dirname + '/dist/frontend'))
 
