@@ -33,7 +33,7 @@
 
     <swiper #swiperRef [slidesPerView]="3" [spaceBetween]="20" [navigation]="true" class="mySwiper">
 
-        <ng-template swiperSlide *ngFor="let material of materials">
+        <ng-template swiperSlide *ngFor="let material of materials" class="col-12 col-md-4">
             <div class="card" style="height: 12rem; width: 30rem; cursor: pointer;"
                 [routerLink]="['/materiais', material.id]">
                 <div class="container"
@@ -57,7 +57,7 @@
     <swiper style="margin-top: 1rem;" #swiperRef [slidesPerView]="5" [spaceBetween]="10" [navigation]="true"
         class="mySwiper">
 
-        <ng-template swiperSlide *ngFor="let category of categories">
+        <ng-template swiperSlide *ngFor="let category of categories" class="col-12 col-md-3">
             <div class="card" style="height: 17rem; width: 30rem; cursor: pointer;" [routerLink]="['/materiais/categoria', category.id]">
                 <div class="container"
                     style="background-image: url({{category.image.url}}); height: 100%; background-size: cover;">
@@ -79,8 +79,8 @@
 
     <swiper #swiperRef [slidesPerView]="3" [spaceBetween]="20" [navigation]="true" class="mySwiper">
 
-        <ng-template swiperSlide *ngFor="let material of mostPopulars">
-            <div class="card" style="height: 12rem; width: 30rem; cursor: pointer;"
+        <ng-template swiperSlide *ngFor="let material of mostPopulars" class="col-12 col-md-4">
+            <div class="card" style="height: 12rem; width: 100%; cursor: pointer;"
                 [routerLink]="['/materiais', material.id]">
                 <div class="container"
                     style="background-image: url({{material.image.url}}); height: 100%; background-size: cover;">

@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.toggle();
   }
 
   public resizeSidebar(): void {

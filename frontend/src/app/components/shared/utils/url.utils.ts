@@ -1,4 +1,4 @@
-export const SERVER_URL = "http://localhost:8080/public/";
+export const SERVER_URL = "http://remain-ufpb.site:8080/public/";
 
 export namespace PaginationUrl {
     export const PAGE = "?page="
@@ -26,4 +26,9 @@ export namespace ImageUrl {
 export namespace AttatchmentsUrl { 
     export const GET_SERVER = "https://api.gofile.io/getServer"
     export const UPLOAD = "gofile.io/uploadFile"    
+}
+
+export namespace AuthUrl{
+    export const USER = "user"
+    export const SEARCH = "search="
 }

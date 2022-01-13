@@ -41,3 +41,20 @@ h4 {
 h1 {
     color: gray;
 }
+
+.top-cover{
+    height: 100%;
+    background-repeat: no-repeat; 
+    background-size:cover; 
+    background-position: center; 
+    border-radius: 0.2rem;
+}
+
+@media screen and (max-width: 767px) {
+    .testee{
+        color: red;
+    }
+	.top-cover {
+		height: 12rem;
+	}
+}
