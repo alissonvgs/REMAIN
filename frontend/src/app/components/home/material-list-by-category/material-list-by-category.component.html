@@ -34,23 +34,19 @@
 
                 <div class="col-md-12" *ngFor="let material of materials">
 
-                    <div class="card" style="margin-bottom: 1rem;">
-                        <div class="image pull-left" style="background-image: url({{material.image.url}})">
-
-                        </div>
-                        <div class="content pull-left">
-                            <h3>
-                                {{material.title | titlecase}}
-                            </h3>
-                            <div [innerHTML]="material.description | slice: 0:100"></div>
-
-
-                            <div class="d-md-flex justify-content-md-end" style="margin-top: 2rem;">
-                                <button class="btn btn-orange" type="button" (click)="goToMaterial(material.id)">Acessar
-                                    Conteúdo</button>
+                    <div class="card mb-3" (click)="goToMaterial(material.id)" style="cursor: pointer;">
+                        <div class="row no-gutters">
+                          <div class="col-md-6">
+                            <img style="width: 100%;" [src]="material.image.url" class="card-img" alt="...">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h2 class="card-title">{{material.title | titlecase}}</h2>
+                              <p [innerHTML]="material.description | slice: 0:190   "></p>
                             </div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
                 </div>
             </div>
 

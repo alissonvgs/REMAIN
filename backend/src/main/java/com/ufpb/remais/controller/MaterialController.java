@@ -35,6 +35,12 @@ public class MaterialController {
         return this.materialRepository.getMaterialByAuthorUid(id, pageable);
     }
 
+    @GetMapping("/author/{id}/{approved}")
+    public Page<Material> getByAuthorAndApproved(
+            @PageableDefault(page = 0, size = 12, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable String id, @PathVariable boolean approved) {
+        return this.materialRepository.getMaterialByAuthorUidAndApproved(id, approved, pageable);
+    }
+
     @GetMapping("/category/{id}")
     public Page<Material> getByCategory(
             @PageableDefault(page = 0, size = 12, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long id) {
@@ -66,6 +72,19 @@ public class MaterialController {
         return this.materialRepository.save(material);
     }
 
+    @PatchMapping("/approve/{materialId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Material approveMaterial( @PathVariable Long materialId){
+        Material material = this.materialRepository.getById(materialId);
+        material.setUpdatedAt(new Date());
+        if (material.isApproved()) {
+            material.setApproved(false);
+        } else {
+            material.setApproved(true);
+        }
+        return this.materialRepository.save(material);
+    }
+
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Material incrementView(@PathVariable Long id){
@@ -93,7 +112,7 @@ public class MaterialController {
             return ResponseEntity.notFound().build();
         }
 
-        this.materialRepository.deleteById(id);;
+        this.materialRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

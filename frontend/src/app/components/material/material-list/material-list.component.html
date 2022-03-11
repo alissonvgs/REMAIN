@@ -12,23 +12,50 @@
 
 
     <div class="container-fluid d-flex align-items-center"
-        style=" height: 5rem; border: solid 1px; border-color: rgb(245, 245, 245); margin: 2rem 0; -webkit-box-shadow: 0 8px 6px -6px #999; -moz-box-shadow: 0 8px 6px -6px #999; box-shadow: 0 8px 6px -6px #999;">
+        style=" height: 5rem; border: solid 1px; border-color: rgb(245, 245, 245); margin: 2rem 0; -webkit-box-shadow: 0 8px 6px -6px #999; -moz-box-shadow: 0 8px 6px -6px #999; box-shadow: 0 8px 6px -6px #999; padding-left: 2rem;">
 
 
         <div class="container-fluid row d-flex justify-content-between">
 
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 d-flex justify-content-start">
                 <input type="email" class="form-control" id="floatingInput" placeholder="Ensino Básico"
-                    style="width: 14.5rem;">
+                    style="width: 30rem;">
             </div>
 
             <div class="col-12 col-md-3 d-flex justify-content-end">
-                <button (click)="goToCreate()" class="btn"
-                    style="background-color: var(--primary-color); color: var(--white);">
-                    Compartilhe seu material
+                <button (click)="goToCreate()" class="btn text-truncate"
+                    style="background-color: var(--primary-color); color: var(--white); width: 30rem;">
+                    Compartilhe seu materiallll
                 </button>
-            </div>
 
+                <!-- <button class="btn text-truncate" data-toggle="modal" data-target="#exampleModal"
+                    style="background-color: var(--primary-color); color: var(--white); width: 30rem;">
+                    Compartilhe seu material
+                </button> -->
+
+
+
+                <!-- Modal -->
+                <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header" style="display: flex; justify-content: center;">
+                        <div class="material-icons-outlined" style="color: var(--primary-color); font-size: 60pt;">warning_amber</div>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            <h1 style="font-weight: 500; color: var(--gray);">Atenção!</h1>
+                            <p style="font-size: 12pt;">Esta funcionalidade está indisponível para seu tipo de usuário.</p>
+                        </div>
+                        <div class="modal-footer" style="display: flex; justify-content: center;">
+                          <button type="button" class="btn" data-dismiss="modal" style="background-color: var(--primary-color); color: white; padding: 0.5rem 2rem;">Ok</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+
+
+
+            </div>
         </div>
     </div>
 
@@ -44,10 +71,10 @@
                         <div ngbDropdown container="body">
                             <div class="btn btn-outline material-icons-outlined" ngbDropdownToggle>more_vert</div>
                             <div ngbDropdownMenu>
-                              <button ngbDropdownItem [routerLink]="['/materiais/editar', item.id]">Editar</button>
-                              <button ngbDropdownItem (click)="deleteMaterial(item.id)">Remover</button>
+                                <button ngbDropdownItem [routerLink]="['/materiais/editar', item.id]">Editar</button>
+                                <button ngbDropdownItem (click)="deleteMaterial(item.id)">Remover</button>
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body" style="height:2rem">

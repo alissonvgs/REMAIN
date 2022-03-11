@@ -2,7 +2,9 @@ package com.ufpb.remais.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -23,12 +25,14 @@ public class User implements Serializable {
 	private String photoUrl;
 	private Date createdAt;
 	private Date updatedAt;
+	@ManyToMany
+	private List<Role> roles = new ArrayList<Role>();
 
 
 	public User() {
 	}
 
-	public User(Long id, String uid, String firstName, String lastName, String email, boolean isEmailVerified, String birthDate, String photoUrl, Date createdAt, Date updatedAt) {
+	public User(Long id, String uid, String firstName, String lastName, String email, boolean isEmailVerified, String birthDate, String photoUrl, Date createdAt, Date updatedAt, List<Role> roles) {
 		this.id = id;
 		this.uid = uid;
 		this.firstName = firstName;
@@ -39,6 +43,7 @@ public class User implements Serializable {
 		this.photoUrl = photoUrl;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.roles = roles;
 	}
 
 	public static long getSerialVersionUID() {
@@ -123,6 +128,18 @@ public class User implements Serializable {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public List<Role> getRole() {
+		return roles;
+	}
+
+	public void setRole(List<Role> role) {
+		this.roles = role;
+	}
+
+	public void addRole(Role role){
+		this.roles.add(role);
 	}
 }
 
