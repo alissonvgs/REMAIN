@@ -15,10 +15,15 @@ export class NavbarComponent implements OnInit {
   @Input() public user: any;
   @Output() public logoutEmitter = new EventEmitter<boolean>();
   public search = new FormControl();
+  public isAdmin: boolean = false;
   
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  public verifyIsAdmin(): void {
+   this.user.role[0].name == "ADMIN" ? this.isAdmin = true: this.isAdmin = false;
   }
 
 

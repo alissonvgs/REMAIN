@@ -20,13 +20,17 @@ export class HomeComponent implements OnInit {
   public categories: any;
   public mostPopulars: any;
   config: SwiperOptions = {
-    slidesPerView: 3,
-    spaceBetween: 50,
-    navigation: true,
-    pagination: { clickable: true },
-    scrollbar: { draggable: true },
+    slidesPerView: 'auto',
+    spaceBetween: 10,
+    navigation: false,
+    breakpoints: {
+      767: {
+        slidesPerView: 3,
+      }
+    }
   };
-  @ViewChild("swiper", { static: false }) swiper?: SwiperComponent;
+
+  @ViewChild("swiper", { static: false }) swiper!: SwiperComponent;
   appendNumber = 4;
   prependNumber = 1;
 
@@ -38,29 +42,41 @@ export class HomeComponent implements OnInit {
     this.fetchMostPopulars();
   }
 
-  onSwiper(event: any) {
+  slideNext() {
+    this.swiper.swiperRef.slideNext(100);
   }
-  onSlideChange() {
+  slidePrev() {
+    this.swiper.swiperRef.slidePrev(100);
   }
 
-  public fetchMaterials(): void{
+  public fetchMaterials(): void {
     this.materialService.getMaterialsWithSort("createdAt,desc").subscribe(data => {
-      this.materials = data.content;   
+      this.materials = data.content;
     });
   }
 
   public fetchMostPopulars(): void {
     this.materialService.getMaterialsWithSort("views,desc").subscribe(data => {
 
-      this.mostPopulars = data.content;   
+      this.mostPopulars = data.content;
     });
   }
 
   public fetchCategories(): void {
     this.materialService.getCategories().subscribe(data => {
-
-      this.categories = data.content;     
+      this.categories = this.shuffleArray(data.content);
     });
   }
+
+  public shuffleArray(array: any) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    return array
+}
 
 }

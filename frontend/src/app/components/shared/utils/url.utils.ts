@@ -1,4 +1,10 @@
-export const SERVER_URL = "http://remain-ufpb.site:8080/public/";
+export namespace UrlsEnv {
+    export const DEV = "http://localhost:8080/public/";
+    export const PROD = "http://remain-ufpb.site:8080/public/"
+}
+
+
+export const SERVER_URL = UrlsEnv.DEV;
 
 export namespace PaginationUrl {
     export const PAGE = "?page="

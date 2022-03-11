@@ -1,7 +1,10 @@
 package com.ufpb.remais.controller;
 
 import com.ufpb.remais.model.Category;
+import com.ufpb.remais.model.Material;
+import com.ufpb.remais.model.Role;
 import com.ufpb.remais.model.User;
+import com.ufpb.remais.repository.RoleRepository;
 import com.ufpb.remais.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,11 +25,15 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> addUser (@RequestBody  User user){
         if (!this.userRepository.existsByUid(user.getUid())){
             user.setCreatedAt(new Date());
+            user.addRole(this.roleRepository.findByNameContaining("USER"));
             User u = this.userRepository.save(user);
             return new ResponseEntity<User>(u, HttpStatus.OK);
         }
@@ -71,5 +78,14 @@ public class UserController {
         }
         this.userRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{userId}/set-role")
+    @ResponseStatus(HttpStatus.OK)
+    public User setUserRole(@PathVariable Long userId, @RequestBody Role role){
+        User user = this.userRepository.getById(userId);
+        user.setUpdatedAt(new Date());
+        user.addRole(role);
+        return this.userRepository.save(user);
     }
 }

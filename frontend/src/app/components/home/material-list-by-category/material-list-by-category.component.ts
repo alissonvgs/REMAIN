@@ -47,9 +47,7 @@ export class MaterialListByCategoryComponent implements OnInit {
   }
 
   public getAllCategories(): void{
-    this.materialService.getCategories().subscribe(data => {
-      console.log(data.content);
-      
+    this.materialService.getCategories().subscribe(data => {      
       this.categories = data.content;
     });
   }

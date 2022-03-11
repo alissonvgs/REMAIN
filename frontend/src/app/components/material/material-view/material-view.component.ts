@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from 'src/app/models/category.model';
 import { MaterialService } from '../material.service';
 
 @Component({
@@ -34,6 +35,13 @@ export class MaterialViewComponent implements OnInit {
 
   public goToExternalLinks(): void{
     window.open(this.material.externalLinks, "_blank");
+  }
+
+  public goToSurvey(): void{
+    if (this.material.survey !== null){
+      window.open(this.material.survey, "_blank");
+    }
+
   }
 
   public goToAttatchments(): void{

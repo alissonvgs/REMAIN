@@ -36,9 +36,29 @@ public class CategoryController {
         return ResponseEntity.ok(category.get());
     }
 
+    @PatchMapping("/{id}")
+    public Category editCategory (@PathVariable Long id, @RequestBody Category category){
+        System.out.println(this.categoryRepository.existsById(id));
+        Category c = this.categoryRepository.getById(id);
+        c.setImage(category.getImage());
+        return this.categoryRepository.save(c);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Category addCategory(@RequestBody Category category){
         return this.categoryRepository.save(category);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+
+        if (!this.categoryRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        this.categoryRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

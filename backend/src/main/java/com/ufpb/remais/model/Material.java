@@ -18,6 +18,7 @@ public class Material {
     private Image image;
     private String externalLinks;
     private String attatchments;
+    private String survey;
     private Date createdAt;
     private Date updatedAt;
     @ManyToOne
@@ -25,22 +26,25 @@ public class Material {
     @ManyToMany
     private List <Category> category;
     private Integer views = 0;
+    private boolean approved;
 
     public Material() {
     }
 
-    public Material(long id, String title, String description, Image image, String externalLinks, String attatchments, Date createdAt, Date updatedAt, User author, List<Category> category, Integer views) {
+    public Material(long id, String title, String description, Image image, String externalLinks, String attatchments, String survey, Date createdAt, Date updatedAt, User author, List<Category> category, Integer views) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.image = image;
         this.externalLinks = externalLinks;
         this.attatchments = attatchments;
+        this.survey = survey;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.author = author;
         this.category = category;
         this.views = views;
+        this.approved = false;
     }
 
     public long getId() {
@@ -91,6 +95,10 @@ public class Material {
         this.attatchments = attatchments;
     }
 
+    public String getSurvey() { return survey; }
+
+    public void setSurvey(String survey) { this.survey = survey; }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -126,4 +134,8 @@ public class Material {
     public Integer getViews() { return views; }
 
     public void setViews(Integer views) { this.views = views; }
+
+    public boolean isApproved() { return approved; }
+
+    public void setApproved(boolean approved) { this.approved = approved; }
 }

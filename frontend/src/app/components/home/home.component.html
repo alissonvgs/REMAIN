@@ -1,52 +1,60 @@
 <div class="container home">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-bottom: 2rem;">
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner" style="height: 20rem;">
-          <div class="carousel-item active"  style="background-image: url(https://i.imgur.com/BQv3iJv.jpg?1); background-size: cover; background-position: center;">
-            <div style="height: 20rem;"></div>
-          </div>
-          <div class="carousel-item"  style="background-image: url(https://i.gyazo.com/5975d5395c1d0877d91c330315a6b344.jpg); background-size: cover; background-position: center;">
-            <div style="height: 20rem;"></div>
-          </div>
-          <div class="carousel-item"  style="background-image: url(https://www.geekforce.com.br/wp-content/uploads/2014/02/curso-de-programacao-para-criancas-geek-force-school-1.png); background-size: cover; background-position: center;">
-            <div style="height: 20rem;"></div>
-          </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active"
+                style="background-image: url(https://i.imgur.com/BQv3iJv.jpg?1); background-size: cover; background-position: center;">
+                <div style="height: 20rem;"></div>
+            </div>
+            <div class="carousel-item"
+                style="background-image: url(https://i.gyazo.com/5975d5395c1d0877d91c330315a6b344.jpg); background-size: cover; background-position: center;">
+                <div style="height: 20rem;"></div>
+            </div>
+            <div class="carousel-item"
+                style="background-image: url(https://www.geekforce.com.br/wp-content/uploads/2014/02/curso-de-programacao-para-criancas-geek-force-school-1.png); background-size: cover; background-position: center;">
+                <div style="height: 20rem;"></div>
+            </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
         </a>
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
         </a>
-      </div>
+    </div>
 
     <div class="col-12 news">
         <img src="https://i.imgur.com/2XCpa5T.png" class="icons" alt="ícone de envios recentes">
         <h2 class="hide">Envios recentes</h2>
     </div>
 
-    <swiper #swiperRef [slidesPerView]="3" [spaceBetween]="20" [navigation]="true" class="mySwiper">
 
-        <ng-template swiperSlide *ngFor="let material of materials" class="col-12 col-md-4">
-            <div class="card" style="height: 12rem; width: 30rem; cursor: pointer;"
-                [routerLink]="['/materiais', material.id]">
-                <div class="container"
-                    style="background-image: url({{material.image.url}}); height: 100%; background-size: cover;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+
+        <div class="left material-icons-outlined" (click)="slidePrev()">arrow_back_ios</div>
+
+        <swiper [config]="config" #swiper class="swiper-recents-web">
+            <ng-template swiperSlide *ngFor="let material of materials" class="col-12 col-md-4">
+                <div class="card" style="height: 12rem; width: 30rem; cursor: pointer;"
+                    [routerLink]="['/materiais', material.id]">
+                    <div class="container"
+                        style="background-image: url({{material.image.url}}); height: 100%; background-size: cover;">
+                    </div>
+                    <div class="card-footer" style="height: 3rem; font-size: medium;">
+                        <p>{{material.title | titlecase}}</p>
+                    </div>
                 </div>
-                <div class="card-footer" style="height: 3rem; font-size: medium;">
-                    <p>{{material.title | titlecase}}</p>
-                </div>
-            </div>
-        </ng-template>
 
-
-    </swiper>
+            </ng-template>
+        </swiper>
+        <div class="right material-icons-outlined" (click)="slideNext()">arrow_forward_ios</div>
+    </div>
 
     <div class="col-12 category">
         <img src="https://i.imgur.com/XX9JBUv.png" class="icons" alt="ìcone de categoria">
@@ -54,11 +62,11 @@
     </div>
 
 
-    <swiper style="margin-top: 1rem;" #swiperRef [slidesPerView]="5" [spaceBetween]="10" [navigation]="true"
-        class="mySwiper">
+    <swiper [config]="config" style="margin-top: 1rem;" #swiperRef class="mySwiper">
 
         <ng-template swiperSlide *ngFor="let category of categories" class="col-12 col-md-3">
-            <div class="card" style="height: 17rem; width: 30rem; cursor: pointer;" [routerLink]="['/materiais/categoria', category.id]">
+            <div class="card" style="height: 17rem; width: 30rem; cursor: pointer;"
+                [routerLink]="['/materiais/categoria', category.id]">
                 <div class="container"
                     style="background-image: url({{category.image.url}}); height: 100%; background-size: cover;">
                 </div>
@@ -76,23 +84,24 @@
         <img src="https://i.imgur.com/U3433vy.png" class="icons" alt="ícone de envios recentes">
         <h2 class="hide">Os mais vistos!</h2>
     </div>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
 
-    <swiper #swiperRef [slidesPerView]="3" [spaceBetween]="20" [navigation]="true" class="mySwiper">
+        <swiper [config]="config" #swiper class="mySwiper">
 
-        <ng-template swiperSlide *ngFor="let material of mostPopulars" class="col-12 col-md-4">
-            <div class="card" style="height: 12rem; width: 100%; cursor: pointer;"
-                [routerLink]="['/materiais', material.id]">
-                <div class="container"
-                    style="background-image: url({{material.image.url}}); height: 100%; background-size: cover;">
+            <ng-template swiperSlide *ngFor="let material of mostPopulars" class="col-12 col-md-4">
+                <div class="card" style="height: 12rem; width: 100%; cursor: pointer;"
+                    [routerLink]="['/materiais', material.id]">
+                    <div class="container"
+                        style="background-image: url({{material.image.url}}); height: 100%; background-size: cover;">
+                    </div>
+                    <div class="card-footer" style="height: 3rem; font-size: medium;">
+                        <p>{{material.title | titlecase}}</p>
+                    </div>
                 </div>
-                <div class="card-footer" style="height: 3rem; font-size: medium;">
-                    <p>{{material.title | titlecase}}</p>
-                </div>
-            </div>
-        </ng-template>
+            </ng-template>
 
 
-    </swiper>
+        </swiper>
 
-
+    </div>
 </div>
